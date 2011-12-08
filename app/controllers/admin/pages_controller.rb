@@ -35,7 +35,8 @@ class ::Admin::PagesController < ::Admin::ResourceController
       params[:search] ||= {}
       params[:search][:meta_sort] ||= "page.asc"
       @search = Page.metasearch(params[:search])
-      @collection = @search.paginate(:per_page => Spree::Config[:orders_per_page], :page => params[:page])
+      # @collection = @search.paginate(:per_page => Spree::Config[:orders_per_page], :page => params[:page])
+      @collection = @search
     end
 
 end

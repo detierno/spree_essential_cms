@@ -2,6 +2,7 @@ class PageController < Spree::BaseController
 
   before_filter :get_page, :only => :index
   
+  
   def show
   end
     
@@ -14,6 +15,12 @@ class PageController < Spree::BaseController
       
     def page_path
       params[:path] || "/"
+    end
+    
+    def collection
+      params[:search] ||= {}
+      @search = Post.metasearch(params[:search])
+      @collection = @search.page(params[:page]).per(Spree::Config[:orders_per_page])
     end
         
 end
